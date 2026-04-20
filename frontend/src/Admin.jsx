@@ -10,25 +10,31 @@ const REFERRAL_LABEL = {
 }
 
 export default function Admin() {
-  const [key, setKey]         = useState('')
+  const [email, setEmail]     = useState('')
+  const [password, setPassword] = useState('')
   const [authed, setAuthed]   = useState(false)
+  const [creds, setCreds]     = useState(null)
   const [signups, setSignups] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError]     = useState(null)
   const [search, setSearch]   = useState('')
   const [filter, setFilter]   = useState('all')
 
-  async function fetchSignups(adminKey) {
+  async function fetchSignups(adminEmail, adminPassword) {
     setLoading(true)
     setError(null)
     try {
       const res = await fetch(`${API}/signups`, {
-        headers: { 'x-admin-key': adminKey },
+        headers: {
+          'x-admin-email':    adminEmail,
+          'x-admin-password': adminPassword,
+        },
       })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Unauthorized')
+      if (!res.ok) throw new Error(data.detail || data.error || 'Unauthorized')
       setSignups(data.signups)
       setAuthed(true)
+      setCreds({ email: adminEmail, password: adminPassword })
     } catch (err) {
       setError(err.message)
     } finally {
@@ -38,7 +44,7 @@ export default function Admin() {
 
   function handleLogin(e) {
     e.preventDefault()
-    fetchSignups(key)
+    fetchSignups(email, password)
   }
 
   const filtered = signups.filter(s => {
@@ -70,8 +76,13 @@ export default function Admin() {
           <p style={{ color: '#64748b', fontSize: 13, marginBottom: 24 }}>Enter your admin key to view signups</p>
           <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             <input
-              type="password" required placeholder="Admin key"
-              value={key} onChange={e => setKey(e.target.value)}
+              type="email" required placeholder="Email"
+              value={email} onChange={e => setEmail(e.target.value)}
+              style={inputStyle}
+            />
+            <input
+              type="password" required placeholder="Password"
+              value={password} onChange={e => setPassword(e.target.value)}
               style={inputStyle}
             />
             {error && <p style={{ color: '#f87171', fontSize: 13 }}>{error}</p>}
@@ -150,7 +161,7 @@ export default function Admin() {
             <option value="stocks">Stocks</option>
             <option value="both">Both</option>
           </select>
-          <button onClick={() => fetchSignups(key)} style={{
+          <button onClick={() => fetchSignups(creds.email, creds.password)} style={{
             padding: '10px 16px', borderRadius: 8, fontSize: 13, fontWeight: 600,
             background: '#111827', border: '1px solid #1e2d45', color: '#64748b', cursor: 'pointer',
           }}>↻ Refresh</button>
@@ -189,6 +200,18 @@ export default function Admin() {
         </div>
 
       </div>
+
+      {/* Footer */}
+      <footer style={{ marginTop: 48, paddingTop: 20, borderTop: '1px solid #1e2d45', textAlign: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginBottom: 8, flexWrap: 'wrap' }}>
+          <a href="mailto:contact@starsignal.io" style={{ fontSize: 12, color: '#475569', textDecoration: 'none' }}>Contact</a>
+          <a href="https://www.linkedin.com/company/113175994/" target="_blank" rel="noopener noreferrer"
+            style={{ fontSize: 12, color: '#475569', textDecoration: 'none' }}>
+            LinkedIn
+          </a>
+        </div>
+        <p style={{ fontSize: 12, color: '#334155' }}>© 2026 Futurotek LLC. All rights reserved.</p>
+      </footer>
     </div>
   )
 }

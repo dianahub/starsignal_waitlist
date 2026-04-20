@@ -107,41 +107,18 @@ export default function App() {
               <p style={{ color: '#94a3b8', fontSize: 15, lineHeight: 1.6, maxWidth: 360, margin: '0 auto' }}>
                 Thanks for signing up for the Starsignal.io beta. We'll reach out to <strong style={{ color: '#cbd5e1' }}>{form.email}</strong> when your spot is ready.
               </p>
-              <div style={{
-                marginTop: 32, padding: '16px 20px', borderRadius: 12,
-                background: 'linear-gradient(135deg, #1e1b4b, #0f1a2e)',
-                border: '1px solid #4338ca',
-              }}>
-                <p style={{ color: '#a5b4fc', fontSize: 13, lineHeight: 1.6 }}>
-                  In the meantime, explore the public dashboard at{' '}
-                  <a href="https://ai-trading-research.vercel.app" target="_blank" rel="noopener noreferrer"
-                    style={{ color: '#818cf8', textDecoration: 'underline' }}>
-                    ai-trading-research.vercel.app
-                  </a>
-                </p>
-              </div>
             </div>
           ) : (
             <>
               {/* Hero */}
               <div style={{ textAlign: 'center', marginBottom: 36 }}>
                 <div style={{ fontSize: 40, marginBottom: 12 }}>🔭 ♄</div>
-                <h1 style={{ fontSize: 28, fontWeight: 800, color: '#f1f5f9', letterSpacing: '-0.02em', marginBottom: 10 }}>
-                  Join the Beta
+                <h1 style={{ fontSize: 26, fontWeight: 800, color: '#f1f5f9', letterSpacing: '-0.02em', marginBottom: 14, lineHeight: 1.2 }}>
+                  Be First on Star Signal
                 </h1>
-                <p style={{ color: '#94a3b8', fontSize: 15, lineHeight: 1.6, maxWidth: 380, margin: '0 auto' }}>
-                  Get early access to Starsignal.io — AI + financial astrology signals for crypto and stocks.
+                <p style={{ color: '#94a3b8', fontSize: 15, lineHeight: 1.7, maxWidth: 420, margin: '0 auto' }}>
+                  A trading platform built for people who follow the stars. Enter your email and you'll be the first to know when we launch.
                 </p>
-
-                {/* Feature chips */}
-                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 8, marginTop: 20 }}>
-                  {['📈 Technicals', '♄ Astro Signals', '🤖 Claude AI', '🐋 Smart Money'].map(f => (
-                    <span key={f} style={{
-                      fontSize: 12, padding: '4px 12px', borderRadius: 99,
-                      background: '#111827', border: '1px solid #1e2d45', color: '#64748b',
-                    }}>{f}</span>
-                  ))}
-                </div>
               </div>
 
               {/* Form */}
@@ -218,11 +195,11 @@ export default function App() {
                   onMouseEnter={e => { if (!loading) e.target.style.filter = 'brightness(1.2)' }}
                   onMouseLeave={e => { e.target.style.filter = 'brightness(1)' }}
                 >
-                  {loading ? 'Submitting…' : '♄ Request Beta Access'}
+                  {loading ? 'Submitting…' : 'Apply for Free Beta Access'}
                 </button>
 
                 <p style={{ textAlign: 'center', fontSize: 12, color: '#334155' }}>
-                  No spam. We'll only email you when your beta access is ready.
+                  Limited to 100 founding members. No credit card needed to apply.
                 </p>
               </form>
             </>
@@ -230,8 +207,166 @@ export default function App() {
         </div>
       </main>
 
+      {/* Pricing */}
+      <section style={{ padding: '60px 24px', background: '#070b16', borderTop: '1px solid #1e2d45' }}>
+        <div style={{ maxWidth: 960, margin: '0 auto' }}>
+          <h2 style={{ textAlign: 'center', fontSize: 22, fontWeight: 800, color: '#f1f5f9', marginBottom: 8, letterSpacing: '-0.01em' }}>
+            Simple Pricing
+          </h2>
+          <p style={{ textAlign: 'center', color: '#64748b', fontSize: 14, marginBottom: 40 }}>
+            Start free, upgrade anytime
+          </p>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
+            gap: 20,
+          }}>
+
+            {/* Free */}
+            <div style={{
+              background: '#0a0e1a',
+              border: '1px solid #1e2d45',
+              borderRadius: 14,
+              padding: '32px 28px',
+              display: 'flex', flexDirection: 'column', gap: 20,
+            }}>
+              <div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>Free</div>
+                <div style={{ fontSize: 32, fontWeight: 800, color: '#f1f5f9' }}>$0<span style={{ fontSize: 15, fontWeight: 400, color: '#64748b' }}>/mo</span></div>
+                <div style={{ fontSize: 13, color: '#475569', marginTop: 6 }}>Manual key issuance — limited availability</div>
+              </div>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
+                {['5 AI signals/day', 'Basic planetary alerts', 'Email support'].map(f => (
+                  <li key={f} style={{ fontSize: 14, color: '#94a3b8', display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                    <span style={{ color: '#3b82f6', flexShrink: 0 }}>✦</span>{f}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="mailto:contact@starsignal.io"
+                style={{
+                  display: 'block', textAlign: 'center',
+                  padding: '13px 20px', borderRadius: 10, fontSize: 15, fontWeight: 700,
+                  background: 'transparent', color: '#94a3b8',
+                  border: '1px solid #1e3a5f',
+                  textDecoration: 'none',
+                  transition: 'border-color 0.2s, color 0.2s',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = '#3b82f6'; e.currentTarget.style.color = '#e2e8f0' }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = '#1e3a5f'; e.currentTarget.style.color = '#94a3b8' }}
+              >
+                Request Access
+              </a>
+            </div>
+
+            {/* Starter */}
+            <div style={{
+              background: '#0a0e1a',
+              border: '1px solid #1e3a5f',
+              borderRadius: 14,
+              padding: '32px 28px',
+              display: 'flex', flexDirection: 'column', gap: 20,
+            }}>
+              <div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>Starter</div>
+                <div style={{ fontSize: 32, fontWeight: 800, color: '#f1f5f9' }}>$49<span style={{ fontSize: 15, fontWeight: 400, color: '#64748b' }}>/mo</span></div>
+                <div style={{ fontSize: 13, color: '#475569', marginTop: 6 }}>Everything you need to start signal trading</div>
+              </div>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
+                {['50 AI signals/day', 'Full planetary dashboard', 'Real-time alerts', 'API access', 'Priority email support'].map(f => (
+                  <li key={f} style={{ fontSize: 14, color: '#94a3b8', display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                    <span style={{ color: '#3b82f6', flexShrink: 0 }}>✦</span>{f}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="https://buy.stripe.com/fZu28qalWcQne2L165cfK01"
+                target="_blank" rel="noopener noreferrer"
+                style={{
+                  display: 'block', textAlign: 'center',
+                  padding: '13px 20px', borderRadius: 10, fontSize: 15, fontWeight: 700,
+                  background: 'linear-gradient(135deg, #1e3a8a, #2563eb)',
+                  color: '#fff', border: 'none',
+                  textDecoration: 'none',
+                  boxShadow: '0 0 20px #2563eb44',
+                  transition: 'filter 0.2s',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.filter = 'brightness(1.15)' }}
+                onMouseLeave={e => { e.currentTarget.style.filter = 'brightness(1)' }}
+              >
+                Get Started
+              </a>
+            </div>
+
+            {/* Pro */}
+            <div style={{
+              background: 'linear-gradient(160deg, #0d1225 0%, #0a0e1a 100%)',
+              border: '1px solid #3730a3',
+              borderRadius: 14,
+              padding: '32px 28px',
+              display: 'flex', flexDirection: 'column', gap: 20,
+              position: 'relative',
+              boxShadow: '0 0 30px #3730a322',
+            }}>
+              <div style={{
+                position: 'absolute', top: -12, left: '50%', transform: 'translateX(-50%)',
+                background: 'linear-gradient(135deg, #4f46e5, #7c3aed)',
+                color: '#fff', fontSize: 11, fontWeight: 700, letterSpacing: '0.1em',
+                padding: '4px 14px', borderRadius: 20, textTransform: 'uppercase',
+              }}>
+                Most Popular
+              </div>
+              <div>
+                <div style={{ fontSize: 13, fontWeight: 600, color: '#818cf8', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>Pro</div>
+                <div style={{ fontSize: 32, fontWeight: 800, color: '#f1f5f9' }}>$149<span style={{ fontSize: 15, fontWeight: 400, color: '#64748b' }}>/mo</span></div>
+                <div style={{ fontSize: 13, color: '#475569', marginTop: 6 }}>Full power for serious signal traders</div>
+              </div>
+              <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
+                {['Unlimited AI signals', 'Advanced natal + transit charts', 'Webhook integrations', 'Full API access', 'Backtesting suite', 'Dedicated support'].map(f => (
+                  <li key={f} style={{ fontSize: 14, color: '#94a3b8', display: 'flex', gap: 8, alignItems: 'flex-start' }}>
+                    <span style={{ color: '#818cf8', flexShrink: 0 }}>✦</span>{f}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href="https://buy.stripe.com/7sY14mfGg7w37En021cfK00"
+                target="_blank" rel="noopener noreferrer"
+                style={{
+                  display: 'block', textAlign: 'center',
+                  padding: '13px 20px', borderRadius: 10, fontSize: 15, fontWeight: 700,
+                  background: 'linear-gradient(135deg, #1e1b4b, #4338ca)',
+                  color: '#c7d2fe', border: '1px solid #4338ca',
+                  textDecoration: 'none',
+                  boxShadow: '0 0 24px #4338ca55',
+                  transition: 'filter 0.2s',
+                }}
+                onMouseEnter={e => { e.currentTarget.style.filter = 'brightness(1.15)' }}
+                onMouseLeave={e => { e.currentTarget.style.filter = 'brightness(1)' }}
+              >
+                Get Started
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer style={{ borderTop: '1px solid #1e2d45', padding: '20px 24px', textAlign: 'center' }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginBottom: 8, flexWrap: 'wrap' }}>
+          <a href="mailto:contact@starsignal.io" style={{ fontSize: 12, color: '#475569', textDecoration: 'none' }}
+            onMouseEnter={e => e.currentTarget.style.color = '#94a3b8'}
+            onMouseLeave={e => e.currentTarget.style.color = '#475569'}>
+            Contact
+          </a>
+          <a href="https://www.linkedin.com/company/113175994/" target="_blank" rel="noopener noreferrer"
+            style={{ fontSize: 12, color: '#475569', textDecoration: 'none' }}
+            onMouseEnter={e => e.currentTarget.style.color = '#94a3b8'}
+            onMouseLeave={e => e.currentTarget.style.color = '#475569'}>
+            LinkedIn
+          </a>
+        </div>
         <p style={{ fontSize: 12, color: '#334155' }}>
           © 2026{' '}
           <a href="https://dianacastillo.zo.space/futurotek/" target="_blank" rel="noopener noreferrer"
