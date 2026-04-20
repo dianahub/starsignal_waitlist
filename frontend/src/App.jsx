@@ -210,11 +210,6 @@ export default function App() {
       {/* Footer */}
       <footer style={{ borderTop: '1px solid #1e2d45', padding: '20px 24px', textAlign: 'center' }}>
         <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginBottom: 8, flexWrap: 'wrap' }}>
-          <a href="mailto:contact@starsignal.io" style={{ fontSize: 12, color: '#475569', textDecoration: 'none' }}
-            onMouseEnter={e => e.currentTarget.style.color = '#94a3b8'}
-            onMouseLeave={e => e.currentTarget.style.color = '#475569'}>
-            Contact
-          </a>
           <a href="https://www.linkedin.com/company/113175994/" target="_blank" rel="noopener noreferrer"
             style={{ fontSize: 12, color: '#475569', textDecoration: 'none' }}
             onMouseEnter={e => e.currentTarget.style.color = '#94a3b8'}
