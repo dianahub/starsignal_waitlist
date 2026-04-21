@@ -2,5 +2,8 @@
   "buildCommand": "cd frontend && npm install && npm run build",
   "outputDirectory": "frontend/dist",
   "installCommand": "echo skip",
+  "redirects": [
+    { "source": "/partners/apply", "destination": "https://starsignal.io/partners/apply", "permanent": false }
+  ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
