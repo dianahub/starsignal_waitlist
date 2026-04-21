@@ -121,38 +121,6 @@ export default function App() {
                 </p>
               </div>
 
-              {/* Astrologer partner CTA */}
-              <a
-                href="https://starsignal.io/partners/apply"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{ textDecoration: 'none', display: 'block', marginBottom: 28 }}
-              >
-                <div style={{
-                  background: 'linear-gradient(135deg, #1a1200, #2a1f00)',
-                  border: '1px solid #d4a847',
-                  borderRadius: 14,
-                  padding: '20px 24px',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 16,
-                  transition: 'filter 0.2s',
-                }}
-                  onMouseEnter={e => e.currentTarget.style.filter = 'brightness(1.1)'}
-                  onMouseLeave={e => e.currentTarget.style.filter = 'brightness(1)'}
-                >
-                  <div style={{ fontSize: 32, flexShrink: 0 }}>✦</div>
-                  <div>
-                    <div style={{ fontSize: 14, fontWeight: 800, color: '#d4a847', marginBottom: 4, letterSpacing: '-0.01em' }}>
-                      Are you a financial astrologer?
-                    </div>
-                    <div style={{ fontSize: 13, color: '#a07830', lineHeight: 1.5 }}>
-                      Join the Starsignal Partner Network — get your insights in front of thousands of traders. Apply now →
-                    </div>
-                  </div>
-                </div>
-              </a>
-
               {/* Form */}
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
 
@@ -234,6 +202,38 @@ export default function App() {
                   Limited to 100 founding members. No credit card needed to apply.
                 </p>
               </form>
+
+              {/* Astrologer partner CTA */}
+              <a
+                href="https://starsignal.io/partners/apply"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'none', display: 'block', marginTop: 24 }}
+              >
+                <div style={{
+                  background: 'linear-gradient(135deg, #1a1200, #2a1f00)',
+                  border: '1px solid #d4a847',
+                  borderRadius: 14,
+                  padding: '20px 24px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 16,
+                  transition: 'filter 0.2s',
+                }}
+                  onMouseEnter={e => e.currentTarget.style.filter = 'brightness(1.1)'}
+                  onMouseLeave={e => e.currentTarget.style.filter = 'brightness(1)'}
+                >
+                  <div style={{ fontSize: 32, flexShrink: 0 }}>✦</div>
+                  <div>
+                    <div style={{ fontSize: 14, fontWeight: 800, color: '#d4a847', marginBottom: 4, letterSpacing: '-0.01em' }}>
+                      Are you a financial astrologer?
+                    </div>
+                    <div style={{ fontSize: 13, color: '#a07830', lineHeight: 1.5 }}>
+                      Join the Starsignal Partner Network — get your insights in front of thousands of traders. Apply now →
+                    </div>
+                  </div>
+                </div>
+              </a>
             </>
           )}
         </div>
