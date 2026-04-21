@@ -3,7 +3,7 @@
   "outputDirectory": "frontend/dist",
   "installCommand": "echo skip",
   "redirects": [
-    { "source": "/partners/apply", "destination": "https://starsignal.io/partners/apply", "permanent": false }
+    { "source": "/partners/apply", "destination": "https://ai-trading-research.vercel.app/partners/apply", "permanent": false }
   ],
   "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
