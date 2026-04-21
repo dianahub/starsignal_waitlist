@@ -18,7 +18,7 @@ const labelStyle = {
   display: 'block',
   fontSize: 13,
   fontWeight: 600,
-  color: '#64748b',
+  color: '#94a3b8',
   marginBottom: 6,
   textTransform: 'uppercase',
   letterSpacing: '0.05em',
@@ -89,7 +89,7 @@ export default function App() {
           </div>
           <div>
             <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.12em', color: '#fff' }}>Starsignal.io</div>
-            <div style={{ fontSize: 11, color: '#475569' }}>AI Astro Trading</div>
+            <div style={{ fontSize: 11, color: '#94a3b8' }}>AI Astro Trading</div>
           </div>
         </div>
       </header>
@@ -120,6 +120,38 @@ export default function App() {
                   A trading platform built for people who follow the stars. Enter your email and you'll be the first to know when we launch.
                 </p>
               </div>
+
+              {/* Astrologer partner CTA */}
+              <a
+                href="https://starsignal.io/partners/apply"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: 'none', display: 'block', marginBottom: 28 }}
+              >
+                <div style={{
+                  background: 'linear-gradient(135deg, #1a1200, #2a1f00)',
+                  border: '1px solid #d4a847',
+                  borderRadius: 14,
+                  padding: '20px 24px',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 16,
+                  transition: 'filter 0.2s',
+                }}
+                  onMouseEnter={e => e.currentTarget.style.filter = 'brightness(1.1)'}
+                  onMouseLeave={e => e.currentTarget.style.filter = 'brightness(1)'}
+                >
+                  <div style={{ fontSize: 32, flexShrink: 0 }}>✦</div>
+                  <div>
+                    <div style={{ fontSize: 14, fontWeight: 800, color: '#d4a847', marginBottom: 4, letterSpacing: '-0.01em' }}>
+                      Are you a financial astrologer?
+                    </div>
+                    <div style={{ fontSize: 13, color: '#a07830', lineHeight: 1.5 }}>
+                      Join the Starsignal Partner Network — get your insights in front of thousands of traders. Apply now →
+                    </div>
+                  </div>
+                </div>
+              </a>
 
               {/* Form */}
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
@@ -211,9 +243,9 @@ export default function App() {
       <footer style={{ borderTop: '1px solid #1e2d45', padding: '20px 24px', textAlign: 'center' }}>
         <div style={{ display: 'flex', justifyContent: 'center', gap: 20, marginBottom: 8, flexWrap: 'wrap' }}>
           <a href="https://www.linkedin.com/company/113175994/" target="_blank" rel="noopener noreferrer"
-            style={{ fontSize: 12, color: '#475569', textDecoration: 'none' }}
+            style={{ fontSize: 12, color: '#94a3b8', textDecoration: 'none' }}
             onMouseEnter={e => e.currentTarget.style.color = '#94a3b8'}
-            onMouseLeave={e => e.currentTarget.style.color = '#475569'}>
+            onMouseLeave={e => e.currentTarget.style.color = '#94a3b8'}>
             LinkedIn
           </a>
         </div>
