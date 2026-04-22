@@ -78,27 +78,11 @@ export default function App() {
 
   function handlePromoCode(e) {
     const val = e.target.value.toUpperCase()
-    setForm(f => ({ ...f, promo_code: val }))
+   // setForm(f => ({ ...f, promo_code: val }))
     setCodeStatus(null)
     setCodeMsg('')
     clearTimeout(debounceRef.current)
-    if (!val.trim()) return
-    setCodeStatus('checking')
-    debounceRef.current = setTimeout(async () => {
-      try {
-        const r = await fetch(`${MAIN_API}/promo/validate?code=${encodeURIComponent(val.trim())}`)
-        const d = await r.json()
-        if (d.valid) {
-          setCodeStatus('valid')
-          setCodeMsg(d.message || '45 days free and $19/month forever after')
-        //} else {
-          //setCodeStatus('invalid')
-          //setCodeMsg(d.message || "Code not recognized — you'll still get 30 days free")
-        //}
-      } catch {
-        setCodeStatus(null)
-      }
-    }, 500)
+    
   }
 
   async function handleSubmit(e) {
