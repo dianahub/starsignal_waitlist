@@ -214,7 +214,7 @@ export default function App() {
                 <Field label="Promo code (optional)">
                   <div style={{ position: 'relative' }}>
                     <input
-                      name="promo_code" type="text" placeholder="e.g. ROWAN"
+                      name="promo_code" type="text" placeholder="Enter promo code"
                       value={form.promo_code} onChange={handlePromoCode}
                       onFocus={() => setFocused('promo_code')} onBlur={() => setFocused(null)}
                       maxLength={20}
