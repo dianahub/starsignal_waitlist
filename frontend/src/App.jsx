@@ -55,7 +55,7 @@ export default function App() {
     const params = new URLSearchParams(window.location.search)
     const code = (params.get('promocode') || params.get('promo') || params.get('code') || '').toUpperCase()
     if (code) {
-      setForm(f => ({ ...f, promo_code: code }))
+     // setForm(f => ({ ...f, promo_code: code }))
     //  setCodeStatus('checking')
       //fetch(`${MAIN_API}/promo/validate?code=${encodeURIComponent(code)}`)
         //.then(r => r.json())
