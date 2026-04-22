@@ -56,19 +56,19 @@ export default function App() {
     const code = (params.get('promocode') || params.get('promo') || params.get('code') || '').toUpperCase()
     if (code) {
       setForm(f => ({ ...f, promo_code: code }))
-      setCodeStatus('checking')
-      fetch(`${MAIN_API}/promo/validate?code=${encodeURIComponent(code)}`)
-        .then(r => r.json())
-        .then(d => {
-          if (d.valid) {
-            setCodeStatus('valid')
-            setCodeMsg(d.message || '45 days free and $19/month forever after')
-          } else {
-            setCodeStatus('invalid')
-            setCodeMsg(d.message || "Code not recognized — you'll still get 30 days free")
-          }
-        })
-        .catch(() => setCodeStatus(null))
+    //  setCodeStatus('checking')
+      //fetch(`${MAIN_API}/promo/validate?code=${encodeURIComponent(code)}`)
+        //.then(r => r.json())
+        //.then(d => {
+         // if (d.valid) {
+           // setCodeStatus('valid')
+            //setCodeMsg(d.message || '45 days free and $19/month forever after')
+          //} else {
+           // setCodeStatus('invalid')
+            //setCodeMsg(d.message || "Code not recognized — you'll still get 30 days free")
+          //}
+        //})
+        //.catch(() => setCodeStatus(null))
     }
   }, [])
 
