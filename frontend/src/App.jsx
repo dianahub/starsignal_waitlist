@@ -78,11 +78,10 @@ export default function App() {
 
   function handlePromoCode(e) {
     const val = e.target.value.toUpperCase()
-   // setForm(f => ({ ...f, promo_code: val }))
+    setForm(f => ({ ...f, promo_code: val }))
     setCodeStatus(null)
     setCodeMsg('')
     clearTimeout(debounceRef.current)
-    
   }
 
   async function handleSubmit(e) {
