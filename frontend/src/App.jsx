@@ -91,10 +91,10 @@ export default function App() {
         if (d.valid) {
           setCodeStatus('valid')
           setCodeMsg(d.message || '45 days free and $19/month forever after')
-        } else {
-          setCodeStatus('invalid')
-          setCodeMsg(d.message || "Code not recognized — you'll still get 30 days free")
-        }
+        //} else {
+          //setCodeStatus('invalid')
+          //setCodeMsg(d.message || "Code not recognized — you'll still get 30 days free")
+        //}
       } catch {
         setCodeStatus(null)
       }
