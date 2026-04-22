@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+const API = import.meta.env.VITE_MAIN_API_URL || 'https://ai-trading-backend-production-311c.up.railway.app'
 
 const TRADING_LABEL = { crypto: '₿ Crypto', stocks: '📈 Stocks', both: '🔀 Both' }
 const REFERRAL_LABEL = {
@@ -176,7 +176,7 @@ export default function Admin() {
               <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
                 <thead>
                   <tr style={{ borderBottom: '1px solid #1e2d45' }}>
-                    {['Name', 'Email', 'Trades', 'Found via', 'Signed up'].map(h => (
+                    {['Name', 'Email', 'Trades', 'Found via', 'Promo Code', 'Signed up'].map(h => (
                       <th key={h} style={{ textAlign: 'left', padding: '10px 16px', color: '#475569', fontWeight: 600, whiteSpace: 'nowrap' }}>{h}</th>
                     ))}
                   </tr>
@@ -188,6 +188,7 @@ export default function Admin() {
                       <td style={{ padding: '11px 16px', color: '#94a3b8', fontFamily: 'monospace' }}>{s.email}</td>
                       <td style={{ padding: '11px 16px', color: '#64748b' }}>{TRADING_LABEL[s.trading_type] ?? s.trading_type}</td>
                       <td style={{ padding: '11px 16px', color: '#64748b' }}>{REFERRAL_LABEL[s.referral_source] ?? s.referral_source}</td>
+                      <td style={{ padding: '11px 16px', color: s.promo_code ? '#a5b4fc' : '#334155', fontFamily: 'monospace', fontSize: 12 }}>{s.promo_code || '—'}</td>
                       <td style={{ padding: '11px 16px', color: '#475569', whiteSpace: 'nowrap' }}>
                         {new Date(s.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
                       </td>
