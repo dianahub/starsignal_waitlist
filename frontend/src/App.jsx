@@ -90,13 +90,13 @@ export default function App() {
     setLoading(true)
     setError(null)
     try {
-      const res = await fetch(`${API}/signup`, {
+      const res = await fetch(`${MAIN_API}/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, promo_code: form.promo_code.trim() || undefined }),
+        body: JSON.stringify({ name: form.name, email: form.email, trading_type: form.trading_type, referral_source: form.referral_source }),
       })
       const data = await res.json()
-      if (!res.ok) throw new Error(data.error || 'Something went wrong')
+      if (!res.ok) throw new Error(data.detail || data.error || 'Something went wrong')
       setSubmitted(true)
     } catch (err) {
       setError(err.message)
