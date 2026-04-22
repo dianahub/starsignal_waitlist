@@ -24,7 +24,7 @@ const VALID_REFERRAL = new Set(['twitter', 'instagram', 'tiktok', 'youtube', 're
 
 // ── POST /signup ───────────────────────────────────────────────────────────────
 app.post('/signup', async (req, res) => {
-  const { name, email, trading_type, referral_source } = req.body ?? {}
+  const { name, email, trading_type, referral_source, promo_code } = req.body ?? {}
 
   if (!name?.trim())                          return res.status(400).json({ error: 'Name is required' })
   if (!email?.trim())                         return res.status(400).json({ error: 'Email is required' })
@@ -36,6 +36,8 @@ app.post('/signup', async (req, res) => {
     return res.status(400).json({ error: 'Invalid email address' })
   }
 
+  const cleanPromoCode = promo_code?.trim().toUpperCase() || null
+
   try {
     const signup = await db.signup.create({
       data: {
@@ -43,6 +45,7 @@ app.post('/signup', async (req, res) => {
         email:           email.trim().toLowerCase(),
         trading_type,
         referral_source,
+        promo_code:      cleanPromoCode,
       },
     })
     return res.status(201).json({ ok: true, id: signup.id })

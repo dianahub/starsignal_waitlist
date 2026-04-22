@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
-const API = import.meta.env.VITE_API_URL || 'http://localhost:4000'
+const API      = import.meta.env.VITE_API_URL      || 'http://localhost:4000'
+const MAIN_API = import.meta.env.VITE_MAIN_API_URL || 'https://ai-trading-backend-production-311c.up.railway.app'
 
 const inputStyle = {
   width: '100%',
@@ -39,14 +40,65 @@ export default function App() {
     email: '',
     trading_type: '',
     referral_source: '',
+    promo_code: '',
   })
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [focused, setFocused] = useState(null)
+  const [codeStatus, setCodeStatus] = useState(null) // null | 'checking' | 'valid' | 'invalid'
+  const [codeMsg, setCodeMsg] = useState('')
+  const debounceRef = useRef(null)
+
+  // Auto-populate promo code from ?promocode= URL param
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search)
+    const code = (params.get('promocode') || params.get('promo') || params.get('code') || '').toUpperCase()
+    if (code) {
+      setForm(f => ({ ...f, promo_code: code }))
+      setCodeStatus('checking')
+      fetch(`${MAIN_API}/promo/validate?code=${encodeURIComponent(code)}`)
+        .then(r => r.json())
+        .then(d => {
+          if (d.valid) {
+            setCodeStatus('valid')
+            setCodeMsg(d.message || '45 days free and $19/month forever after')
+          } else {
+            setCodeStatus('invalid')
+            setCodeMsg(d.message || "Code not recognized — you'll still get 30 days free")
+          }
+        })
+        .catch(() => setCodeStatus(null))
+    }
+  }, [])
 
   function handle(e) {
     setForm(f => ({ ...f, [e.target.name]: e.target.value }))
+  }
+
+  function handlePromoCode(e) {
+    const val = e.target.value.toUpperCase()
+    setForm(f => ({ ...f, promo_code: val }))
+    setCodeStatus(null)
+    setCodeMsg('')
+    clearTimeout(debounceRef.current)
+    if (!val.trim()) return
+    setCodeStatus('checking')
+    debounceRef.current = setTimeout(async () => {
+      try {
+        const r = await fetch(`${MAIN_API}/promo/validate?code=${encodeURIComponent(val.trim())}`)
+        const d = await r.json()
+        if (d.valid) {
+          setCodeStatus('valid')
+          setCodeMsg(d.message || '45 days free and $19/month forever after')
+        } else {
+          setCodeStatus('invalid')
+          setCodeMsg(d.message || "Code not recognized — you'll still get 30 days free")
+        }
+      } catch {
+        setCodeStatus(null)
+      }
+    }, 500)
   }
 
   async function handleSubmit(e) {
@@ -57,7 +109,7 @@ export default function App() {
       const res = await fetch(`${API}/signup`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
+        body: JSON.stringify({ ...form, promo_code: form.promo_code.trim() || undefined }),
       })
       const data = await res.json()
       if (!res.ok) throw new Error(data.error || 'Something went wrong')
@@ -173,6 +225,35 @@ export default function App() {
                     <option value="google">Google search</option>
                     <option value="other">Other</option>
                   </select>
+                </Field>
+
+                <Field label="Promo code (optional)">
+                  <div style={{ position: 'relative' }}>
+                    <input
+                      name="promo_code" type="text" placeholder="e.g. ROWAN"
+                      value={form.promo_code} onChange={handlePromoCode}
+                      onFocus={() => setFocused('promo_code')} onBlur={() => setFocused(null)}
+                      maxLength={20}
+                      style={{
+                        ...focusedBorder('promo_code'),
+                        borderColor: codeStatus === 'valid' ? '#22c55e' : codeStatus === 'invalid' ? '#1e3a5f' : focused === 'promo_code' ? '#3b82f6' : '#1e3a5f',
+                        letterSpacing: '0.05em',
+                        paddingRight: 36,
+                      }}
+                    />
+                    {codeStatus === 'checking' && (
+                      <span style={{ position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)', fontSize: 12, color: '#64748b' }}>…</span>
+                    )}
+                    {codeStatus === 'valid' && (
+                      <span style={{ position: 'absolute', right: 12, top: '50%', transform: 'translateY(-50%)', color: '#22c55e' }}>✓</span>
+                    )}
+                  </div>
+                  {codeStatus === 'valid' && (
+                    <p style={{ fontSize: 12, color: '#22c55e', marginTop: 4, fontWeight: 600 }}>✓ {codeMsg}</p>
+                  )}
+                  {codeStatus === 'invalid' && (
+                    <p style={{ fontSize: 12, color: '#64748b', marginTop: 4 }}>{codeMsg}</p>
+                  )}
                 </Field>
 
                 {error && (

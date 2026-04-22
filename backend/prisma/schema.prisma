@@ -14,5 +14,6 @@ model Signup {
   email           String   @unique
   trading_type    String   // crypto | stocks | both
   referral_source String   // twitter | instagram | tiktok | youtube | reddit | friend | google | other
+  promo_code      String?  // optional astrologer promo code
   createdAt       DateTime @default(now())
 }
