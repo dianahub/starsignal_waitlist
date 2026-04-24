@@ -28,7 +28,6 @@ app.post('/signup', async (req, res) => {
 
   if (!name?.trim())                          return res.status(400).json({ error: 'Name is required' })
   if (!email?.trim())                         return res.status(400).json({ error: 'Email is required' })
-  if (!VALID_TRADING.has(trading_type))       return res.status(400).json({ error: 'Invalid trading type' })
   if (!VALID_REFERRAL.has(referral_source))   return res.status(400).json({ error: 'Invalid referral source' })
 
   // Basic email format check
@@ -43,7 +42,7 @@ app.post('/signup', async (req, res) => {
       data: {
         name:            name.trim(),
         email:           email.trim().toLowerCase(),
-        trading_type,
+        trading_type:    trading_type || '',
         referral_source,
         promo_code:      cleanPromoCode,
       },
