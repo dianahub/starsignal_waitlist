@@ -190,20 +190,6 @@ export default function App() {
                   />
                 </Field>
 
-                <Field label="What do you trade?">
-                  <select
-                    name="trading_type" required
-                    value={form.trading_type} onChange={handle}
-                    onFocus={() => setFocused('trading_type')} onBlur={() => setFocused(null)}
-                    style={{ ...focusedBorder('trading_type'), cursor: 'pointer' }}
-                  >
-                    <option value="" disabled>Select one…</option>
-                    <option value="crypto">Crypto</option>
-                    <option value="stocks">Stocks</option>
-                    <option value="both">Both</option>
-                  </select>
-                </Field>
-
                 <Field label="How did you hear about us?">
                   <select
                     name="referral_source" required
