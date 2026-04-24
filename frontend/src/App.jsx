@@ -156,6 +156,19 @@ export default function App() {
                 </p>
               </div>
 
+              {/* Video */}
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 28 }}>
+                <div style={{ borderRadius: 16, overflow: 'hidden', width: '100%', maxWidth: 315, aspectRatio: '9/16', background: '#0b1120' }}>
+                  <iframe
+                    src="https://www.youtube.com/embed/J_-8CXGhxt0"
+                    title="Star Signal"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    style={{ width: '100%', height: '100%', border: 'none', display: 'block' }}
+                  />
+                </div>
+              </div>
+
               {/* Form */}
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
 
